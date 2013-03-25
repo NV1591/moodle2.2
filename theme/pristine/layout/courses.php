@@ -69,7 +69,8 @@ echo $OUTPUT->doctype() ?>
                 <div id="region-main-wrap">
                     <div id="region-main">
                         <div class="region-content">
-                            <?php echo $OUTPUT->main_content() ?>
+                            <!-- <?php echo $OUTPUT->main_content() ?> -->
+                            <?php include('dashboard.php'); ?>
                         </div>
                     </div>
                 </div>

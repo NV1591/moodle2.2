@@ -139,8 +139,8 @@ function print_dashboard($course_list, $userid) {
             $score = 0;
             $done_quiz_this_course = 0;
         }?>
-        <div class='Course_Main'><div class='course_div'><a href="<?php echo
-        $CFG->wwwroot; ?>/course/view.php?id=$courseid>"><h3><?php echo           $coursedata->fullname; ?></h3></a>
+        <div class='Course_Main'><div class='course_div'><a href='<?php echo
+        $CFG->wwwroot . "/course/view.php?id=$courseid"; ?>'><h3><?php echo $coursedata->fullname; ?></h3></a>
         <table id=tour2 style='width:100%;'><tr height='25px'>
           <td width='20%' class='course_SubHead'>Topics Completed &nbsp; &nbsp;</ td>              
           <td width='10%' class='course_Content'><span>
@@ -173,7 +173,8 @@ function print_dashboard($course_list, $userid) {
           <td  height='35px' valign='middle' class='course_SubHead'>&nbsp; </     td><td> </td>    
           <td colspan='2' align='right'  height='35px' valign='middle' >
           <a  href="<?php echo $CFG->wwwroot . '/course/view.php?id=' .           $courseid . '&display=quiz';?>" class= 'BlueButton'> Quiz </a> </td>
-          <td align='right'><a href='<?php echo $CFG->wwwroot; ?>/course/view.php?id=$courseid/' class= 'BlueButton' style='margin-right: 35px;'> Video</a>
+          <td align='right'><a href='<?php echo $CFG->wwwroot .
+          "/course/view.php?id=$courseid&display=page"; ?>' class= 'BlueButton' style='margin-right: 35px;'> Video</a>
           </td></tr></table></div></div>
     <?php
     }
