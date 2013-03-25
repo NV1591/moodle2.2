@@ -1,112 +1,111 @@
 <?php
-// start doctype etc head elements
-if(!empty($_COOKIE['MoodleSession'])) {
-    $fname = ucfirst($USER->firstname);
-    $lname = ucfirst($USER->lastname);
-    setcookie('mdl_firstname',$fname,time()+10800,'/','.edupristine.com');
-    setcookie('mdl_lastname',$lname,time()+10800,'/','.edupristine.com');
+$lib_url = '../lib/pristine.php';
+include_once($lib_url);
+$hasheading = ($PAGE->heading);
+$hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
+$hasfooter = (empty($PAGE->layout_options['nofooter']));
+$hassidepre = (empty($PAGE->layout_options['noblocks']) && $PAGE->blocks->region_has_content('side-pre', $OUTPUT));
+$hassidepost = (empty($PAGE->layout_options['noblocks']) && $PAGE->blocks->region_has_content('side-post', $OUTPUT));
+$haslogininfo = (empty($PAGE->layout_options['nologininfo']));
+
+$showsidepre = ($hassidepre && !$PAGE->blocks->region_completely_docked('side-pre', $OUTPUT));
+$showsidepost = ($hassidepost && !$PAGE->blocks->region_completely_docked('side-post', $OUTPUT));
+
+$custommenu = $OUTPUT->custom_menu();
+$hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
+
+$bodyclasses = array();
+if ($showsidepre && !$showsidepost) {
+    $bodyclasses[] = 'side-pre-only';
+} else if ($showsidepost && !$showsidepre) {
+    $bodyclasses[] = 'side-post-only';
+} else if (!$showsidepost && !$showsidepre) {
+    $bodyclasses[] = 'content-only';
+}
+if ($hascustommenu) {
+    $bodyclasses[] = 'has_custom_menu';
 }
 
-$hassidepre = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
-$hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
-if($USER->id==2) {
-    $checkadmin=1;
-} else {
-    $checkadmin=0;
-}
-echo $OUTPUT->doctype(); ?>
+echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes() ?>>
 <head>
     <title><?php echo $PAGE->title ?></title>
+    <link rel="shortcut icon" href="<?php echo $OUTPUT->pix_url('favicon', 'theme')?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
 </head>
-
-<body id="<?php p($PAGE->bodyid); ?>" class="<?php p($PAGE->bodyclasses); ?>">
+<body id="<?php p($PAGE->bodyid) ?>" class="<?php p($PAGE->bodyclasses.' '.join(' ', $bodyclasses)) ?>">
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
-
-
-</style>
-<link rel="stylesheet" type="text/css" href="http://www.edupristine.com/wp-content/themes/default/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="http://www.edupristine.com/wp-content/themes/default/css/style.min.css" />
-   <link href="http://moodle.edupristine.com/theme/excitement/layout/css/c_list.css" rel="stylesheet" type="text/css" />
-
-<!--<link rel="stylesheet" type="text/css" href="http://www.edupristine.com/wp-content/themes/default/css/pristine.css" />-->
- <?php
-// start of pristine header
-include('header.php');
-?>
-
-<div style="width:960px; margin-right:auto; margin-left:auto;">
-<!--<div class="container">    
-  <div class="alert walert alert-info">    
-    <button type="button" class="close" data-dismiss="alert">&times;</button>         
-    <strong>New Feature Alert!</strong> Now dont waste time looking out for lessons. We have added a search bar in courses.
-    <u><strong><a style="color:#3a87ad" href=""></a></strong></u>
-  </div>                                                                  
-</div> --> 
-<div class="breadcrumb wrap_head clearfix" style="min-width:400px !important; width:630px;" >
-	
-	 <?php echo $OUTPUT->navbar(); ?>
-</div>
-                    <div class="headermenu"><?php
-              //  echo $OUTPUT->login_info();
-                if (!empty($PAGE->layout_options['langmenu'])) {
-                    echo $OUTPUT->lang_menu();
-                }
-                echo $PAGE->headingmenu
-            ?></div>
-		<div class="navbutton">
-                   <?php if($checkadmin==1) {
-                             echo $PAGE->button;
-                         } ?></div> </div>
+<div id="page">
+<?php if ($hasheading || $hasnavbar) { ?>
+    <div id="page-header">
+        <?php if ($hasheading) { ?>
+        <h1 class="headermain"><?php echo $PAGE->heading ?></h1>
+        <div class="headermenu"><?php
+            if ($haslogininfo) {
+                echo $OUTPUT->login_info();
+            }
+            if (!empty($PAGE->layout_options['langmenu'])) {
+                echo $OUTPUT->lang_menu();
+            }
+            echo $PAGE->headingmenu
+        ?></div><?php } ?>
+        <?php if ($hascustommenu) { ?>
+        <div id="custommenu"><?php echo $custommenu; ?></div>
+        <?php } ?>
+        <?php if ($hasnavbar) { ?>
+            <div class="navbar clearfix">
+                <div class="breadcrumb"><?php echo $OUTPUT->navbar(); ?></div>
+                <div class="navbutton"> <?php echo $PAGE->button; ?></div>
+            </div>
+        <?php } ?>
     </div>
-	</div>
-	</div>
-</div>
-<?php
-// end of pristine header
-?>
-<div class="container">
-<?php
-// header ends here
-?>
-    <div id="region-main-box">
-        <div id="region-post-box">
-            <?php if (($hassidepre) and ($checkadmin)) { ?>
-                <div id="region-pre">
-                    <div class="region-content" >
+<?php } ?>
+<!-- END OF HEADER -->
+
+    <div id="page-content">
+        <div id="region-main-box">
+            <div id="region-post-box">
+
+                <div id="region-main-wrap">
+                    <div id="region-main">
+                        <div class="region-content">
+                            <?php echo $OUTPUT->main_content() ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php if ($hassidepre) { ?>
+                <div id="region-pre" class="block-region">
+                    <div class="region-content">
                         <?php echo $OUTPUT->blocks_for_region('side-pre') ?>
                     </div>
                 </div>
-                <?php } else {
-echo "  <div id='region-pre'>    <div class='region-content' style='border-bottom: 1px solid #E1E1E1;'>   ";
-include('mynav.php');
-echo "</div></div></div>";
-}
- ?>
-            <div id="region-main-wrap">
-                <div id="region-main">
-                    <div class="region-content" >
-                       <!-- <?php echo core_renderer::MAIN_CONTENT_TOKEN ?> -->
-                        <?php include('c_list.php'); ?>
-                    </div>
-                </div>
-            </div>
-                <?php if (($hassidepost) and ($checkadmin)) { ?>
-                <div id="region-post">
-                    <div class="region-content" >
+                <?php } ?>
+
+                <?php if ($hassidepost) { ?>
+                <div id="region-post" class="block-region">
+                    <div class="region-content">
                         <?php echo $OUTPUT->blocks_for_region('side-post') ?>
                     </div>
                 </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
     </div>
+
+<!-- START OF FOOTER -->
+    <?php if ($hasfooter) { ?>
+    <div id="page-footer" class="clearfix">
+        <p class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></p>
+        <?php
+        echo $OUTPUT->login_info();
+        echo $OUTPUT->home_link();
+        echo $OUTPUT->standard_footer_html();
+        ?>
+    </div>
+    <?php } ?>
+    <div class="clearfix"></div>
 </div>
-</div>
-            <?php
-// start of footer
-include('footer.php');
-?>
-<?php //echo $OUTPUT->standard_end_of_body_html() ?>
+<?php echo $OUTPUT->standard_end_of_body_html() ?>
 </body>
 </html>
