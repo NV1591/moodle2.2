@@ -1,7 +1,9 @@
 moodle2.2
 =========
+Moodle repository for open sourcing Edupristine's moodle modules.
+Check out our moodle at http://moodle.edupristine.com/demo.php
 
-This moodle implementation has multiple course pages. 
+multiple course pages, is working now. 
 eg. a url for course is - http://localhost/moodle/course/view.php?id=2
 use display=page or display=quiz for displaying only those types of resources. 
 
