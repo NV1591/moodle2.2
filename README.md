@@ -25,4 +25,4 @@ Files resoinsible
 2. A library file - lib/pristine.php
 
 [[Pending]] - Make this a plugin
-[[Pending]] - Some of the performance parameters are not being reflected correctly
+[[Pending]] - Topics complete is not reflecting a correct number

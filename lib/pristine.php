@@ -119,9 +119,9 @@ function print_dashboard($course_list, $userid) {
     $total_quiz = get_performance_totalquizes();
     $done_videos = get_performance_viewedvideos($userid);
     $gross_score = get_performance_grossscore($userid);
+    $percentage = get_performance_percent_complete($userid);
     foreach($course_list as $courseid=>$coursedata) {
         $topics_completed = 0;
-        $percent=20;
         if(isset($total_quiz[$courseid])) {
             $total_quiz_this_course = $total_quiz[$courseid]->totalquizes;
         } else {
@@ -139,42 +139,43 @@ function print_dashboard($course_list, $userid) {
             $score = 0;
             $done_quiz_this_course = 0;
         }?>
-        <div class='Course_Main'><div class='course_div'><a href='<?php echo
+        <div><div><a href='<?php echo
         $CFG->wwwroot . "/course/view.php?id=$courseid"; ?>'><h3><?php echo $coursedata->fullname; ?></h3></a>
-        <table id=tour2 style='width:100%;'><tr height='25px'>
-          <td width='20%' class='course_SubHead'>Topics Completed &nbsp; &nbsp;</ td>              
-          <td width='10%' class='course_Content'><span>
+        <table style='width:100%;'><tr height='25px'>
+          <td width='20%'>Topics Completed &nbsp; &nbsp;</ td>              
+          <td width='10%'><span>
             <?php echo $topics_completed;?>
           </span>/
             <?php echo $total_topics[$courseid]->totaltopics; ?>
-          </td><td width='20%' class='course_SubHead'>Gross Score &nbsp; &nbsp;</ td>              
-          <td width='25%' class='course_Content'><span>
+          </td><td width='20%'>Gross Score &nbsp; &nbsp;</ td>              
+          <td width='25%'<span>
           <?php echo round($score); ?>
-          </span></td><td width='25%' align='center' valign='middle' class =      'course_Content'>
+          </span></td><td width='25%' align='center' valign='middle'>
           <span style='font-size:13px;'>
-          <?php echo round($score); ?>
+          <?php echo $percentage[$courseid]; ?>
           %</span> complete </td></tr><tr height='25px'>
-          <td width='20%' class='course_SubHead'>
+          <td width='20%'>
           Videos Watched  &nbsp; &nbsp;</td>
-          <td width='10%' class='course_Content'><span>
+          <td width='10%'><span>
           <?php echo $done_videos_this_course; ?>
           </span>/
           <?php echo $total_videos[$courseid]->videos;?>
-          </span></td><td width='20%' class='course_SubHead'>Tests Taken &nbsp;   &nbsp;</td>      
-          <td width='25%' class='course_Content'><span>
+          </span></td><td width='20%'>Tests Taken &nbsp;   &nbsp;</td>      
+          <td width='25%'><span>
           <?php echo $done_videos_this_course; ?>
           </span>/
           <?php echo $total_quiz_this_course; ?>
           </td><td><div style='float:left;background:#cccccc;
                         height:12px;width:150px;'>
-          <div style='float:left;background:green;height:12px;width:44%;
+          <div style='float:left;background:green;height:12px;width:<?php echo
+          $percentage[$courseid]; ?>%;
                       z-index:100;'></div></div> </td></tr>
-          <tr class='continue_bar'>
-          <td  height='35px' valign='middle' class='course_SubHead'>&nbsp; </     td><td> </td>    
+          <tr>
+          <td  height='35px' valign='middle'>&nbsp; </     td><td> </td>    
           <td colspan='2' align='right'  height='35px' valign='middle' >
-          <a  href="<?php echo $CFG->wwwroot . '/course/view.php?id=' .           $courseid . '&display=quiz';?>" class= 'BlueButton'> Quiz </a> </td>
+          <a  href="<?php echo $CFG->wwwroot . '/course/view.php?id=' .           $courseid . '&display=quiz';?>"> Quiz </a> </td>
           <td align='right'><a href='<?php echo $CFG->wwwroot .
-          "/course/view.php?id=$courseid&display=page"; ?>' class= 'BlueButton' style='margin-right: 35px;'> Video</a>
+          "/course/view.php?id=$courseid&display=page"; ?>' style='margin-right: 35px;'> Video</a>
           </td></tr></table></div></div>
     <?php
     }
