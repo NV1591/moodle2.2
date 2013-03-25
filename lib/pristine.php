@@ -152,7 +152,7 @@ function print_dashboard($course_list, $userid) {
           <?php echo round($score); ?>
           </span></td><td width='25%' align='center' valign='middle' class =      'course_Content'>
           <span style='font-size:13px;'>
-          20
+          <?php echo round($score); ?>
           %</span> complete </td></tr><tr height='25px'>
           <td width='20%' class='course_SubHead'>
           Videos Watched  &nbsp; &nbsp;</td>

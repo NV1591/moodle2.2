@@ -18,3 +18,11 @@ Files responsible are
 
 There is a test / dummy database also in this repository, for quick installation. Has 2
 courses for demostration of multiple course pages
+
+Course catalog with performance feedback is also working now
+Files resoinsible
+1. Theme folder - pristine
+2. A library file - lib/pristine.php
+
+[[Pending]] - Make this a plugin
+[[Pending]] - Some of the performance parameters are not being reflected correctly
