@@ -1537,6 +1537,14 @@ function print_section($course, $section, $mods, $modnamesused, $absolute=false,
             if ($extraclasses) {
                 $liclasses = array_merge($liclasses, explode(' ', $extraclasses));
             }
+            //What to display in course dashboard logic starts
+            $mod_array = (array) $mod->get_url();
+            $mod_array_keys = array_keys($mod_array);
+            $display_mod_url = $mod_array[$mod_array_keys[5]];
+//FIX THIS - write a method in mod class to get path, this is super crude and violates basic
+//principles of object oriented programming
+            $show = get_cm_visibility_pristine($display_mod_url);
+            if($show) {
             echo html_writer::start_tag('li', array('class'=>join(' ', $liclasses), 'id'=>'module-'.$modnumber));
             if ($ismoving) {
                 echo '<a title="'.$strmovefull.'"'.
@@ -1793,6 +1801,7 @@ function print_section($course, $section, $mods, $modnamesused, $absolute=false,
             echo html_writer::end_tag('div');
             echo html_writer::end_tag('li')."\n";
         }
+        } //ending display loop
 
     } elseif ($ismoving) {
         echo "<ul class=\"section\">\n";
