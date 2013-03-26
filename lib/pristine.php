@@ -180,5 +180,13 @@ function print_dashboard($course_list, $userid) {
     <?php
     }
 }
+
+function if_a_page($url) {
+    if(strpos($url, 'page')) {
+        return true;
+    } else {
+        return false;
+    }
+}
 ?>
 
