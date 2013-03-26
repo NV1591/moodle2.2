@@ -232,6 +232,10 @@ function print_related_lessons($video_cmid, $courseid) {
         $related_urls = $DB->get_records_sql_menu($sql_url,
                              array($video_name, $courseid));
         echo '<br><br>';
+        print_r($related_url);
+        foreach ($related_url as $key=>$value) {
+            echo "<br> $value";
+        }
     } else {
         //Mordor Code : One does not simply walk in here, send to log
     }
