@@ -188,5 +188,53 @@ function if_a_page($url) {
         return false;
     }
 }
+
+function print_related_lessons($video_cmid, $courseid) {
+    global $DB;
+    if($video_cmid) {
+        $sql_get_name = "SELECT b.name 
+                         FROM mdl_course_modules a, 
+                              mdl_page b
+                         WHERE a.id=?
+                            AND a.instance=b.id";
+        $video_name = $DB->get_field_sql($sql_get_name, array($video_cmid));
+        $sql_resource = "SELECT a.id,
+                                b.intro
+                         FROM mdl_course_modules a,
+                              mdl_resource b
+                         WHERE a.instance=b.id 
+                            AND b.name=?
+                            AND a.module=15     
+                            AND a.course=?";
+                            //15 module is for files
+        $related_files = $DB->get_records_sql_menu($sql_resource, 
+                              array($video_name,$courseid));
+        $sql_quiz = "SELECT a.id 
+                           ,b.intro
+                     FROM mdl_course_modules a, 
+                          mdl_quiz b 
+                     WHERE a.instance=b.id 
+                        AND b.name=? 
+                        AND module=14 
+                        AND a.course=?";  
+                        //14 module is for quiz
+        $related_quizes = $DB->get_records_sql_menu($sql_quiz,
+                               array($video_name, $courseid));
+        $sql_url = "SELECT a.id, 
+                           b.externalurl 
+                    FROM mdl_course_modules a, 
+                         mdl_url b 
+                    WHERE a.instance=b.id 
+                        AND b.name=? 
+                        AND module=18 
+                        AND a.course=?";
+                        //18 module is for urls
+        $related_urls = $DB->get_records_sql_menu($sql_url,
+                             array($video_name, $courseid));
+        echo '<br><br>';
+    } else {
+        //Mordor Code : One does not simply walk in here, send to log
+    }
+}
 ?>
 

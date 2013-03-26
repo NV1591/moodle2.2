@@ -1,6 +1,7 @@
 <?php
 $lib_url = '../../lib/pristine.php';
 include_once($lib_url);
+$is_page = if_a_page($_SERVER["SCRIPT_NAME"]);
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
 $hasfooter = (empty($PAGE->layout_options['nofooter']));
@@ -65,15 +66,13 @@ echo $OUTPUT->doctype() ?>
     <div id="page-content">
         <div id="region-main-box">
             <div id="region-post-box">
-
                 <div id="region-main-wrap">
                     <div id="region-main">
                         <div class="region-content">
                             <?php echo $OUTPUT->main_content() ?>
-                            <?php //print related activities for video lessons
-                            $is_page = if_a_page($_SERVER["SCRIPT_NAME"]);
+                            <?php //print related activities if this is a video lesson
                             if($is_page) {
-                                echo "This is a video lesson";
+                                echo print_related_lessons($_GET['id'], $COURSE->id);
                             }
                             ?>
                         </div>
