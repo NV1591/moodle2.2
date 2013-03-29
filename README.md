@@ -20,14 +20,12 @@ that have exactly same name as the video, if something is found then it
 is displayed below the video and made clickable. Right now it searches for
 quizes, resources and urls. Other types of modules can also be added if
 required. So far we havent found any problem or issues with this approach.
-The approach will break down in case on course has two video lessons with
-exactly same name, which should happen actually. 
 
 Files Responsible - theme/pristine/layout/topics.php, lib/pristine.php
 
 Module 2 - Multiple course pages for different types of content
 ---------------------------------------------------------------
-A course has many types of modules - video, pdfs, links, quizes etc etc
+A course has many types of modules - video, pdfs, links, quizes etc. 
 A standard moodle course page shows all kinds of resources at once. 
 What this module does is, creates separate urls for course pages showing
 only one kind of module. 
