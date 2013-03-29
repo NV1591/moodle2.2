@@ -5,11 +5,30 @@ Check out our moodle at http://moodle.edupristine.com/demo.php
 
 Module 1 - Linking lessons to master video lesson
 -------------------------------------------------
-some text here
+This module can be used when the course is heavily video oriented. 
+Usually the smallest lesson contains more than one resources eg - 
+Lesson - *Ethics for Charted Financial Analysts* may have a video, 
+a pdf handout, some external urls for enthusiastic student and 
+maybe one small test. This module makes all related items showing up 
+on the video page, so the student doesnt have to go back to course page
+and search for relevant materials. All related items are shown and 
+linked below the video page. 
+
+Implementation Details : Video is implemented as a HTML page, embeded
+using video.js HTML5 video plugin. Video page searches for resources 
+that have exactly same name as the video, if something is found then it
+is displayed below the video and made clickable. Right now it searches for
+quizes, resources and urls. Other types of modules can also be added if
+required. So far we havent found any problem or issues with this approach.
+The approach will break down in case on course has two video lessons with
+exactly same name, which should happen actually. 
 
 Module 2 - Multiple course pages for different types of content
 ---------------------------------------------------------------
-some text here
+A course has many types of modules - video, pdfs, links, quizes etc etc
+A standard moodle course page shows all kinds of resources at once. 
+What this module does is, creates separate urls for course pages showing
+only one kind of module. 
 
 Module 3 - Course Catalog or Dashboard has user feedback
 --------------------------------------------------------
