@@ -23,6 +23,8 @@ required. So far we havent found any problem or issues with this approach.
 The approach will break down in case on course has two video lessons with
 exactly same name, which should happen actually. 
 
+Files Responsible - theme/pristine/layout/topics.php, lib/pristine.php
+
 Module 2 - Multiple course pages for different types of content
 ---------------------------------------------------------------
 A course has many types of modules - video, pdfs, links, quizes etc etc
@@ -43,6 +45,8 @@ only one kind of module.
 
 This can be extended for other kinds of modules also
 
+Files Responsible - lib/pristine.php, course/lib.php
+
 Module 3 - Course Catalog or Dashboard has user feedback
 --------------------------------------------------------
 Course catalog shows each course's user performance data.
@@ -57,6 +61,7 @@ Course catalog shows each course's user performance data.
 
 5. Gross score in that course
 
+Files Responsible - theme/pristine/layout/courses.php, theme/pristine/layout/dashboard.php, lib/pristine.php
 
 Pending Tasks
 -------------
