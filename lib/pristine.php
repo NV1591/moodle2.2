@@ -13,7 +13,7 @@ function get_cm_visibility_pristine($url) {
             $show = 1;
         } elseif(($_GET["display"] == 'page') and (strpos($url, 'page') != false)) {
             $show = 1;
-        } elseif(($_GET["display"] == 'page') and (strpos($url, 'page') != false)) {
+        } elseif(($_GET["display"] == 'url') and (strpos($url, 'url') != false)) {
             $show = 1;
         }
     } else {

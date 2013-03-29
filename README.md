@@ -29,6 +29,16 @@ A course has many types of modules - video, pdfs, links, quizes etc etc
 A standard moodle course page shows all kinds of resources at once. 
 What this module does is, creates separate urls for course pages showing
 only one kind of module. 
+1. To view all kinds of modules - moodle.domain.com/course/view.php?id=4
+   or moodle.domain.com/course/view.php?id=4&display=all
+2. To view only videos (implemented as pages)
+   moodle.domain.com/course/view.php?id=4&display=page
+3. To view only quizes
+   moodle.domain.com/course/view.php?id=4&display=quiz
+4. To view only urls
+   moodle.domain.com/course/view.php?id=4&display=url
+
+This can be extended for other kinds of modules also
 
 Module 3 - Course Catalog or Dashboard has user feedback
 --------------------------------------------------------
