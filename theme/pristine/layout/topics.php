@@ -1,5 +1,6 @@
 <?php
 $lib_url = '../../lib/pristine.php';
+include_once('../../config.php');
 include_once($lib_url);
 $is_page = if_a_page($_SERVER["SCRIPT_NAME"]);
 $hasheading = ($PAGE->heading);
@@ -64,20 +65,20 @@ echo $OUTPUT->doctype() ?>
 <!-- END OF HEADER -->
 
     <div id="page-content">
-        <div id="region-main-box">
-            <div id="region-post-box">
-                <div id="region-main-wrap">
-                    <div id="region-main">
-                        <div class="region-content">
-                            <?php echo $OUTPUT->main_content() ?>
-                            <?php //print related activities if this is a video lesson
-                            if($is_page) {
-                                echo print_related_lessons($_GET['id'], $COURSE->id);
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
+      <div id="region-main-box">
+        <div id="region-post-box">
+          <div id="region-main-wrap">
+            <div id="region-main">
+              <div class="region-content">
+                  <?php echo $OUTPUT->main_content() ?>
+                  <?php //print related activities if this is a video lesson
+                      if($is_page) {
+                          show_related_lessons($_GET['id'], $COURSE->id);
+                      }
+                  ?>
+              </div>
+            </div>
+          </div>
 
                 <?php if ($hassidepre) { ?>
                 <div id="region-pre" class="block-region">

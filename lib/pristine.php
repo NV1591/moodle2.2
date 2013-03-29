@@ -189,7 +189,7 @@ function if_a_page($url) {
     }
 }
 
-function print_related_lessons($video_cmid, $courseid) {
+function show_related_lessons($video_cmid, $courseid) {
     global $DB;
     if($video_cmid) {
         $sql_get_name = "SELECT b.name 
@@ -221,7 +221,7 @@ function print_related_lessons($video_cmid, $courseid) {
         $related_quizes = $DB->get_records_sql_menu($sql_quiz,
                                array($video_name, $courseid));
         $sql_url = "SELECT a.id, 
-                           b.externalurl 
+                           b.intro 
                     FROM mdl_course_modules a, 
                          mdl_url b 
                     WHERE a.instance=b.id 
@@ -231,14 +231,41 @@ function print_related_lessons($video_cmid, $courseid) {
                         //18 module is for urls
         $related_urls = $DB->get_records_sql_menu($sql_url,
                              array($video_name, $courseid));
-        echo '<br><br>';
-        print_r($related_url);
-        foreach ($related_url as $key=>$value) {
-            echo "<br> $value";
-        }
+        $related_lessons =  array('resources'=>$related_files,
+                            'quizes'=>$related_quizes, 'urls'=>$related_urls);
+        print_related_lessons($related_lessons);
     } else {
         //Mordor Code : One does not simply walk in here, send to log
     }
+}
+
+function print_related_lessons($lessons) {
+    global $CFG;
+    $files = $lessons['resources'];
+    $quizes = $lessons['quizes'];
+    $urls = $lessons['urls'];
+    echo 'Related are .. </br>';
+    if(!empty($files)) {
+        foreach($files as $key=>$value) {
+            $file_title = strip_tags($value);
+            echo 'Lesson : <a href="' . $CFG->wwwroot .'/mod/resource/view.php?id=' . $key . '">' . $file_title . '</a></br>';
+            }
+    } 
+    if(!empty($quizes)) {
+        foreach($quizes as $key=>$value) {
+            $quiz_title = strip_tags($value);
+            echo 'Quiz : <a href="' . $CFG->wwwroot . '/mod/quiz/view.php?id=' . 
+                  $key . '">' . $quiz_title . '</a></br>';
+        }
+    }
+    if(!empty($urls)) {
+        foreach($urls as $key=>$value) {
+            $url_title = strip_tags($value);
+            echo 'Links : <a href="' . $CFG->wwwroot . '/mod/url/view.php?id=' . 
+                $key . '">' . $url_title . '</a></br>';
+        }
+    }
+
 }
 ?>
 
