@@ -31,10 +31,13 @@ What this module does is, creates separate urls for course pages showing
 only one kind of module. 
 1. To view all kinds of modules - moodle.domain.com/course/view.php?id=4
    or moodle.domain.com/course/view.php?id=4&display=all
+
 2. To view only videos (implemented as pages)
    moodle.domain.com/course/view.php?id=4&display=page
+
 3. To view only quizes
    moodle.domain.com/course/view.php?id=4&display=quiz
+
 4. To view only urls
    moodle.domain.com/course/view.php?id=4&display=url
 
@@ -42,28 +45,33 @@ This can be extended for other kinds of modules also
 
 Module 3 - Course Catalog or Dashboard has user feedback
 --------------------------------------------------------
-some text here
+Course catalog shows each course's user performance data.
 
-multiple course pages, is working now. 
-eg. a url for course is - http://localhost/moodle/course/view.php?id=2
-use display=page or display=quiz for displaying only those types of resources. 
+1. Percentage course completed
 
-http://localhost/moodle/course/view.php?id=2&display=quiz
+2. Number of topics completed
 
-Files responsible are
-1. A theme folder named - pristine
-2. A library file named - lib/pristine.php
-3. The course library files - course/lib.php
+3. Number of videos viewed
 
-[[Pending]] - > Make this as a plugin
+4. Number of Quizes attempted
 
-There is a test / dummy database also in this repository, for quick installation. Has 2
-courses for demostration of multiple course pages
+5. Gross score in that course
 
-Course catalog with performance feedback is also working now
-Files resoinsible
-1. Theme folder - pristine
-2. A library file - lib/pristine.php
 
-[[Pending]] - Make this a plugin
-[[Pending]] - Topics complete is not reflecting a correct number
+Pending Tasks
+-------------
+This moodle implementation is far from perfect and far from what I desire,
+listing down pending tasks. I encourage the moodle community to use this 
+implementaion and improve it. 
+
+* Convert three features into plugins
+
+* Insert CSS and give some structure to looks
+
+* Create a demo installation.
+
+* Topics complete is not reflecting a correct number
+
+Installation Guidelines
+-----------------------
+
