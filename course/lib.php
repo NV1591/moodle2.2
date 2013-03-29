@@ -22,6 +22,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @package core
  * @subpackage course
+ * Modified by Ankit Mittal (http://iank.it) 2012, to create multiple course pages
  */
 
 defined('MOODLE_INTERNAL') || die;
