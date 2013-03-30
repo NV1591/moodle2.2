@@ -16,7 +16,8 @@ $CFG->dboptions = array (
   'dbsocket' => 0,
 );
 
-$CFG->wwwroot   = 'http://localhost/moodle';
+$CFG->wwwroot   = 'http://localhost/sandbox/github/moodle';
+//dont put trailing slash in any of these paths
 $CFG->dataroot  = '/home/ankit/Documents/moodledata';
 $CFG->admin     = 'admin';
 
