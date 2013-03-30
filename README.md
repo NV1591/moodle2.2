@@ -77,4 +77,12 @@ implementaion and improve it.
 
 Installation Guidelines
 -----------------------
+1. Copy the code in web server folder. (For ubuntu : /var/www/)
 
+2. Import the MySQL database given in this repository (moodle.sql) 
+
+3. Extract the compressed folder moodledata.zip into non webserver location
+
+4. Modify the config.php file with database details and paths.
+
+This has been tested on Ubuntu 12.04, feel free to report issues with other operating systems.
